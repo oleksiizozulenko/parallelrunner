@@ -1,0 +1,101 @@
+/**
+ *
+ */
+package gp.runner.api;
+
+import gp.runner.api.gdocs.GoogleSpreadSheetToConnectionConverter;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+
+import project.utils.Connection;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+/**
+ * @author oleksii.zozulenko
+ */
+public class RunBuilderConfigsReaderWithGSonImpl extends AbstractRunBuilderService implements
+		RunBuilderConfigsReader
+{
+	public RunBuilderConfigsReaderWithGSonImpl()
+	{
+		super();
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see gp.runner.api.RunBuilderConfigsReader#getConfigs(java.lang.String)
+	 */
+	@Override
+	public List<Connection> getConfigs(String sConfigPath) throws Exception
+	{
+		List<Connection> configs = new ArrayList<Connection>();
+		
+		if (sConfigPath == null || sConfigPath.equalsIgnoreCase(""))
+		{
+			throw new IllegalArgumentException("Configuration path is wrong. Please set one: \n"
+					+ "   xml: [path to config]/[yourconfigname].xml\n"
+					+ "  yaml: [path to config]/[yourconfigname].yaml\n"
+					+ "  gdoc: gdoc://user:pass/specredsheetname/worksheetname/\n");
+		}
+		else if (sConfigPath.startsWith("gdoc://"))
+		{
+			// config path like
+			// gdoc://user:pass/spreadsheet/worksheet
+			
+			String localConfPath = sConfigPath.replaceFirst("gdoc://", "");
+			String filterLabelSrc = "";
+			List<String> filterLabels = new ArrayList<String>();
+			Gson gson = new Gson();
+			Type collectionType = new TypeToken<List<String>>()
+			{
+			}.getType();
+			if (localConfPath.contains("?confs="))
+			{
+				
+				String[] ss = localConfPath.split("\\?confs=");
+				localConfPath = ss[0];
+				filterLabelSrc = ss[1];
+				gson.fromJson(filterLabelSrc, collectionType);
+				
+			}
+			String[] splitedline = localConfPath.split("/");
+			
+			String worksheet = splitedline[2];
+			String spreadsheet = splitedline[1];
+			String[] usrSpl = splitedline[0].split(":");
+			String user = usrSpl[0];
+			String pass = usrSpl[1];
+			GoogleSpreadSheetToConnectionConverter converter = new GoogleSpreadSheetToConnectionConverter(
+					user, pass, spreadsheet, worksheet);
+			configs = converter.getConfigs();
+			
+			for (Connection con : configs)
+			{
+				if (!filterLabels.contains(con.getLabel()))
+				{
+					
+				}
+			}
+		}
+		else if (sConfigPath.contains(".yaml"))
+		{
+			configs = startupFactory.getConfig(sConfigPath);
+		}
+		else if (sConfigPath.contains(".xml"))
+		{
+			Connection o_conn = startupFactory.getConfigOptions(sConfigPath);
+			configs.add(o_conn);
+		}
+		
+		printConfigsDependency(configs);
+		
+		logger.info("Configurations: " + configs);
+		
+		return configs;
+	}
+	
+}

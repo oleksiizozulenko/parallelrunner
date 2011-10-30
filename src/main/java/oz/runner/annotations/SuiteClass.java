@@ -1,0 +1,19 @@
+/**
+ *
+ */
+package oz.runner.annotations;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
+
+/**
+ * @author oleksii.zozulenko
+ */
+@Retention(java.lang.annotation.RetentionPolicy.RUNTIME)
+@Target(value =
+{ ElementType.TYPE })
+public @interface SuiteClass
+{
+	boolean enabled() default true;
+}

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/repos/testframework/!svn/ver/723/trunk/Runner/src/main/java/framework/annotations
+END
+SuiteClass.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/testframework/!svn/ver/723/trunk/Runner/src/main/java/framework/annotations/SuiteClass.java
+END
+Group.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/testframework/!svn/ver/721/trunk/Runner/src/main/java/framework/annotations/Group.java
+END
+Priority.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/testframework/!svn/ver/660/trunk/Runner/src/main/java/framework/annotations/Priority.java
+END

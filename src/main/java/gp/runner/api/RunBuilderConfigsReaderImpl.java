@@ -1,0 +1,104 @@
+/**
+ *
+ */
+package gp.runner.api;
+
+import gp.runner.api.configure.XlsConfigReader;
+import gp.runner.api.gdocs.GoogleSpreadSheetToConnectionConverter;
+
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
+import project.utils.Connection;
+
+/**
+ * @author oleksii.zozulenko
+ */
+public class RunBuilderConfigsReaderImpl extends AbstractRunBuilderService implements
+		RunBuilderConfigsReader
+{
+	
+	/**
+	 *
+	 */
+	public RunBuilderConfigsReaderImpl()
+	{
+		super();
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see gp.runner.api.RunBuilderConfigsReader#getConfigs(java.lang.String)
+	 */
+	@Override
+	public List<Connection> getConfigs(String sConfigPath) throws Exception
+	{
+		List<Connection> configs = new ArrayList<Connection>();
+		
+		if (sConfigPath == null || sConfigPath.equalsIgnoreCase(""))
+		{
+			throw new IllegalArgumentException("Configuration path is wrong. Please set one: \n"
+					+ "   xml: [path to config]/[yourconfigname].xml\n"
+					+ "  yaml: [path to config]/[yourconfigname].yaml\n"
+					+ "  gdoc: gdoc://user:pass/specredsheetname/worksheetname/\n");
+		}
+		else if (sConfigPath.startsWith("gdoc://"))
+		{
+			// config path like
+			// gdoc://user:pass/spreadsheet/worksheet
+			
+			String localConfPath = sConfigPath.replaceFirst("gdoc://", "");
+			
+			String[] splitedline = localConfPath.split("/");
+			
+			String worksheet = splitedline[2];
+			String spreadsheet = splitedline[1];
+			String[] usrSpl = splitedline[0].split(":");
+			String user = usrSpl[0];
+			String pass = usrSpl[1];
+			GoogleSpreadSheetToConnectionConverter converter = new GoogleSpreadSheetToConnectionConverter(
+					user, pass, spreadsheet, worksheet);
+			
+			try
+			{
+				configs = converter.getConfigs();
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
+				URL uri = new URL(
+						"http://192.168.97.247:8080/hudson/job/backup-tests-configs/ws/openbixbox/backup/"
+								+ spreadsheet + ".xls");
+				
+				XlsConfigReader xlsReader = new XlsConfigReader(uri.getPath(), worksheet);
+				
+				configs = xlsReader.readList();
+			}
+		}
+		else if (sConfigPath.contains(".yaml"))
+		{
+			configs = startupFactory.getConfig(sConfigPath);
+		}
+		else if (sConfigPath.contains(".xml"))
+		{
+			Connection o_conn = startupFactory.getConfigOptions(sConfigPath);
+			configs.add(o_conn);
+		}
+		else if (sConfigPath.contains(".xls"))
+		{
+			String[] splitedline = sConfigPath.split("\\?");
+			
+			XlsConfigReader xlsReader = new XlsConfigReader(splitedline[0], splitedline[1]);
+			
+			configs = xlsReader.readList();
+		}
+		
+		printConfigsDependency(configs);
+		
+		logger.info("Configurations: " + configs);
+		
+		return configs;
+	}
+	
+}

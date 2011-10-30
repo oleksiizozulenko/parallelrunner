@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/repos/testframework/!svn/ver/736/trunk/Runner/src/main/java/gp/runner/api/configure
+END
+IConfigReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/testframework/!svn/ver/705/trunk/Runner/src/main/java/gp/runner/api/configure/IConfigReader.java
+END
+XmlConfigReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repos/testframework/!svn/ver/705/trunk/Runner/src/main/java/gp/runner/api/configure/XmlConfigReader.java
+END
+YamlConfigReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/testframework/!svn/ver/705/trunk/Runner/src/main/java/gp/runner/api/configure/YamlConfigReader.java
+END
+AbstractConfigReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/testframework/!svn/ver/721/trunk/Runner/src/main/java/gp/runner/api/configure/AbstractConfigReader.java
+END
+XlsConfigReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repos/testframework/!svn/ver/736/trunk/Runner/src/main/java/gp/runner/api/configure/XlsConfigReader.java
+END

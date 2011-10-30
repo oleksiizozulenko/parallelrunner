@@ -1,0 +1,182 @@
+package framework.bullet;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import project.utils.Connection;
+import framework.bullet.rulesdata.TestBE1;
+import framework.bullet.rulesdata.TestFE1;
+import framework.bullet.rulesdata.TestNoAnnotation1;
+import framework.bullet.rulesdata.TestNone1;
+import gp.runner.api.configure.XmlConfigReader;
+
+@SuppressWarnings("unchecked")
+public class RuleFilterTest
+{
+	private static final String RULES_FILE = "suite.rules";
+	
+	private static final String FE_CONFIG_FILE = "test.fe.config.xml";
+	
+	private static final String BE_CONFIG_FILE = "test.be.config.xml";
+	
+	FileWriter oFile;
+	
+	BufferedWriter oBuffer;
+	
+	@Before
+	public void setUp()
+	{
+		// Create rule file section
+		File rulefile = this.createFile(RULES_FILE);
+		File beconfig = this.createFile(BE_CONFIG_FILE);
+		File feconfig = this.createFile(FE_CONFIG_FILE);
+		
+		String ruleFileContent = "##\n#  browser reference part\n##\n"
+				+ "ff.browser=*firefox *chrome *firefoxproxy\n"
+				+ "ie.browser=*iexlore *iexploreproxy *mshta\n"
+				+ "s.browser=*safari\no.browser=*opera\n" + "ch.browser=*googlechrome\n"
+				+ "##\n# rules part\n##\n" + "rule.be.side.browsers=\\n" + "${ff.browser}:\\n"
+				+ "${ie.browser}\n" + "rule.fe.side.browsers=\\n" + "${ff.browser}:\\n"
+				+ "${ie.browser}:\\n" + "${s.browser}:\\n" + "${o.browser}:\\n" + "${ch.browser}";
+		
+		writeToFileContent(rulefile, ruleFileContent);
+		
+		String browserToken = "{browser}";
+		String baseConfigContent = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Configuration>\n"
+				+ "	<Host value=\"localhost\"></Host>\n	<Port value=\"4444\"></Port>\n"
+				+ "	<Browser value=\"" + browserToken + "\"></Browser>\n"
+				+ "	<Url value=\"http://qa-trunk5.kievlan.local/\"></Url>\n"
+				+ "	<UserNameFE value=\"user@openbizbox.com\"></UserNameFE>\n"
+				+ "	<PasswordFE value=\"user\"></PasswordFE>\n"
+				+ "	<UserNameFEg value=\"guest@openbizbox.com\"></UserNameFEg>\n"
+				+ "	<PasswordFEg value=\"password\"></PasswordFEg>\n"
+				+ "	<UserNameBE value=\"admin@openbizbox.com\"></UserNameBE>\n"
+				+ "	<PasswordBE value=\"admin\"></PasswordBE>\n"
+				+ "	<TimeOut value=\"300000\"></TimeOut>\n	"
+				+ "	<CookieDomain value=\".akeem.server.sov\"></CookieDomain>\n"
+				+ "	<EmailUName value=\"akeem@goldenplanet.com\"></EmailUName>\n"
+				+ "	<EmailUPassword value=\"DjkrbGfufyst7685\"></EmailUPassword>\n"
+				+ "	<EmailHost value=\"mail.goldenplanet.com\"></EmailHost>\n"
+				+ "	<EmailTimeout value=\"60000\"></EmailTimeout>\n"
+				+ "	<TestDataPath value=\"D:\\oleksii\\\"></TestDataPath>\n"
+				+ "	<ScreenshotPath value=\"D:\\screenshots\\\"></ScreenshotPath>\n"
+				+ "	<os value=\"WinXP\"></os>\n</Configuration>";
+		
+		String feBrowser = "*opera";
+		String beBrowser = "*firefox";
+		
+		this.writeToFileContent(beconfig, baseConfigContent.replace(browserToken, beBrowser));
+		this.writeToFileContent(feconfig, baseConfigContent.replace(browserToken, feBrowser));
+		
+	}
+	
+	private File createFile(String fileName)
+	{
+		File file = new File(RULES_FILE);
+		try
+		{
+			file.createNewFile();
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		
+		return file;
+	}
+	
+	private void deleteFile(String fileName)
+	{
+		File file = new File(fileName);
+		file.delete();
+	}
+	
+	private void writeToFileContent(File file, String fileContent)
+	{
+		try
+		{
+			FileWriter oFile = new FileWriter(file);
+			BufferedWriter oBuffer = new BufferedWriter(oFile);
+			
+			oBuffer.write(fileContent);
+			oBuffer.flush();
+			
+			oBuffer.close();
+			oFile.close();
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace(System.out);
+		}
+	}
+	
+	@After
+	public void tearDown() throws Exception
+	{
+		this.deleteFile(RULES_FILE);
+		this.deleteFile(BE_CONFIG_FILE);
+		this.deleteFile(FE_CONFIG_FILE);
+	}
+	
+	@Test
+	@Ignore
+	public void testReadRulesFile()
+	{
+		RuleFilter rf = new RuleFilter();
+		Rule[] rules = rf.readRulesFile(RULES_FILE);
+		assertNotNull(rules);
+		
+		assertNull(rf.readRulesFile("./jflksf/" + RULES_FILE));
+		
+	}
+	
+	@Test
+	@Ignore
+	public void testApplyRules() throws Exception
+	{
+		TestBE1 be = new TestBE1();
+		TestFE1 fe = new TestFE1();
+		TestNone1 none = new TestNone1();
+		TestNoAnnotation1 noann = new TestNoAnnotation1();
+		List tests = new ArrayList();
+		tests.add(be);
+		tests.add(fe);
+		tests.add(none);
+		tests.add(noann);
+		
+		List tests_fe = new ArrayList();
+		tests_fe.add(fe);
+		tests_fe.add(noann);
+		
+		List tests_be = new ArrayList();
+		tests_be.add(be);
+		tests_be.add(fe);
+		tests_be.add(noann);
+		
+		RuleFilter rf = new RuleFilter();
+		Rule[] rules = rf.readRulesFile(RULES_FILE);
+		
+		Connection conn_fe = new XmlConfigReader("./" + FE_CONFIG_FILE).read();
+		Connection conn_be = new XmlConfigReader("./" + BE_CONFIG_FILE).read();
+		
+		List act_fe = rf.applyRules(tests, rules, conn_fe);
+		List act_be = rf.applyRules(tests, rules, conn_be);
+		
+		assertEquals(tests_fe, act_fe);
+		assertEquals(tests_be, act_be);
+		
+	}
+}

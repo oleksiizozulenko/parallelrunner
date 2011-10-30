@@ -1,0 +1,54 @@
+/**
+ *
+ */
+package framework.bullet;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import common.io.CustomXMLReader;
+
+/**
+ * @author oleksii.zozulenko
+ */
+public class RunnerFactorySuiteReaderWithJSONImpl extends AbstractRunnerFactorySuiteReader
+		implements IRunnerFactorySuiteReader
+{
+	
+	/*
+	 * (non-Javadoc)
+	 * @see framework.bullet.RunnerFactorySuiteReader#readSuite(java.lang.String)
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public Map<String, ArrayList> readSuite(String suiteFilePath) throws Exception
+	{
+		Map<String, ArrayList> loSuitesMap = new Hashtable<String, ArrayList>();
+		
+		if (suiteFilePath.startsWith("json://"))
+		{
+			Gson gson = new Gson();
+			Type collectionType = new TypeToken<ArrayList<String>>()
+			{
+			}.getType();
+			
+			String jsonList = suiteFilePath.replaceFirst("json://", "");
+			
+			ArrayList<String> ls = gson.fromJson(jsonList, collectionType);
+			
+			loSuitesMap.put("rerunlist", ls);
+		}
+		else
+		{
+			
+			CustomXMLReader oSuiteReader = new CustomXMLReader(suiteFilePath);
+			loSuitesMap = oSuiteReader.getSuites();
+		}
+		return loSuitesMap;
+	}
+	
+}

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<selenium>
+		<Host value="localhost" />
+		<Port value="4444" />
+		<Browser value="*firefox" />
+		<closeBrowser value="true" />
+		<seleniumSpeed value="0" />
+		<seleniumTraceLog value="false" />
+	</selenium>
+	
+	<application>
+		<Url value="http://qa-trunk5.kievlan.local/" />
+		<deleteCookies value="true"/>
+		<TimeOut value="300000" />
+		
+		<!-- classic/oscommerce -->
+		<skin value="classic"/>
+		
+		<ftp>
+			<ftp_host value="qa-trunk5.kievlan.local"></ftp_host>
+			<ftp_user value="trunk5"></ftp_user>
+			<ftp_pass value="9b3d5706"></ftp_pass>
+		</ftp>	
+	
+		<reset>
+			<resetApp value="true" />
+			<!-- setup/teardown/both -->
+			<resetPosition value="setup" />
+			<!-- demo/clean/sql -->
+			<resetType value="demo"/>
+			<resetFile value="/mydump.sql"/>
+		</reset>
+	
+	</application>
+	
+	<test_enviroment>
+		<os value="WinXP"></os>
+		
+		<email>
+			<EmailUName value="akeem@goldenplanet.com"></EmailUName>
+			<EmailUPassword value="DjkrbGfufyst7685"></EmailUPassword>
+			<EmailHost value="mail.goldenplanet.com"></EmailHost>
+			<EmailTimeout value="60000"></EmailTimeout>
+			<EmailFrom value="testing@goldenplanet.com"></EmailFrom>
+		</email>
+
+		<TempFolder value="Z:\temp\"></TempFolder>
+		<ImagesFolder value="Z:\test-images\"></ImagesFolder>
+		<ScreenshotPath value="D:\screenshots\"></ScreenshotPath>
+			
+	</test_enviroment>
+	
+
+</configuration>

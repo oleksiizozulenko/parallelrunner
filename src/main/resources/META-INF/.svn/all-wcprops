@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/repos/testframework/!svn/ver/723/trunk/Runner/src/main/resources/META-INF
+END
+hibernate.cfg.xml
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/repos/testframework/!svn/ver/723/trunk/Runner/src/main/resources/META-INF/hibernate.cfg.xml
+END
+persistence.xml
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/repos/testframework/!svn/ver/723/trunk/Runner/src/main/resources/META-INF/persistence.xml
+END
+manifest.mf
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/repos/testframework/!svn/ver/723/trunk/Runner/src/main/resources/META-INF/manifest.mf
+END

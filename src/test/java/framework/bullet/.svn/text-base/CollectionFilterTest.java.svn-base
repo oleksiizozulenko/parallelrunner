@@ -1,0 +1,74 @@
+package framework.bullet;
+
+import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import framework.bullet.rulesdata.TestBE1;
+import framework.bullet.rulesdata.TestFE1;
+import framework.bullet.rulesdata.TestNoAnnotation1;
+import framework.bullet.rulesdata.TestNone1;
+import framework.bullet.utils.CollectionFilter;
+import framework.bullet.utils.GroupBEFilter;
+import framework.bullet.utils.GroupFEFilter;
+
+@SuppressWarnings("unchecked")
+public class CollectionFilterTest
+{
+	List source;
+	
+	TestBE1 be = new TestBE1();
+	
+	TestFE1 fe = new TestFE1();
+	
+	TestNone1 none = new TestNone1();
+	
+	TestNoAnnotation1 noann = new TestNoAnnotation1();
+	
+	@Before
+	public void setUp()
+	{
+		source = new ArrayList();
+		source.add(be);
+		source.add(fe);
+		source.add(none);
+		source.add(noann);
+	}
+	
+	@After
+	public void tearDown()
+	{
+		source.clear();
+	}
+	
+	@Test
+	public void testBEFilter()
+	{
+		List exp = new ArrayList();
+		exp.add(be);
+		exp.add(fe);
+		exp.add(noann);
+		
+		List act = (List) CollectionFilter.filter(source, new GroupBEFilter());
+		
+		assertEquals(exp, act);
+	}
+	
+	@Test
+	public void testFEFilter()
+	{
+		List exp = new ArrayList();
+		exp.add(fe);
+		exp.add(noann);
+		
+		List act = (List) CollectionFilter.filter(source, new GroupFEFilter());
+		
+		assertEquals(exp, act);
+	}
+	
+}

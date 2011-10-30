@@ -1,0 +1,100 @@
+/*
+ * ---------------------------------------------------------------
+ * File: XmlConfigReader.java
+ * Project: Runner
+ * Created: Sep 7, 2010 3:23:51 PM
+ * Author: oleksii.zozulenko
+ * ---------------------------------------------------------------
+ */
+package gp.runner.api.configure;
+
+import java.util.List;
+
+import project.utils.Connection;
+
+import common.io.CustomXMLReader;
+
+/**
+ * @author oleksii.zozulenko
+ */
+public class XmlConfigReader extends AbstractConfigReader implements IConfigReader
+{
+	
+	/**
+	 *
+	 */
+	public XmlConfigReader(String congifPath)
+	{
+		super(congifPath);
+		
+		if (congifPath.startsWith("./"))
+		{
+			this._path = congifPath;
+		}
+		else
+		{
+			this._path = "./" + congifPath;
+		}
+		
+	}
+	
+	@Override
+	public Connection read() throws Exception
+	{
+		Connection conn = new Connection();
+		
+		try
+		{
+			CustomXMLReader reader = new CustomXMLReader(_path);
+			
+			conn.setApplicationUrl(reader.getValue("Url"));
+			conn.setSeleniumHost(reader.getValue("Host"));
+			
+			conn.setEmailHost(reader.getValue("EmailHost"));
+			conn.setEmailTimeout(reader.getValue("EmailTimeout"));
+			conn.setEmailUserName(reader.getValue("EmailUName"));
+			conn.setEmailUserPassword(reader.getValue("EmailUPassword"));
+			conn.setEmailFrom(reader.getValue("EmailFrom"));
+			// read email values
+			
+			conn.setScreenshotPath(reader.getValue("ScreenshotPath"));
+			String sPort = reader.getValue("Port");
+			conn.setSeleniumPort(Integer.parseInt(sPort));
+			conn.setSeleniumBrowser(reader.getValue("Browser"));
+			// Read common connection data
+			conn.setApplicationTimeout(reader.getValue("TimeOut"));
+			conn.setEnviromentOs(reader.getValue("os"));
+			
+			// Read data for connect to ftp server
+			conn.setFtpHost(reader.getValue("ftp_host"));
+			conn.setFtpUser(reader.getValue("ftp_user"));
+			conn.setFtpPassword(reader.getValue("ftp_pass"));
+			
+			// Data from properties
+			conn.setResetApplication(Boolean.parseBoolean(reader.getValue("resetApp")));
+			conn.setResetFile(reader.getValue("resetFile"));
+			conn.setResetPosition(reader.getValue("resetPosition"));
+			conn.setResetType(reader.getValue("resetType"));
+			conn.setSeleniumSpeed(reader.getValue("seleniumSpeed"));
+			conn.setDeleteCookies(Boolean.parseBoolean(reader.getValue("deleteCookies")));
+			conn.setSkin(reader.getValue("skin"));
+			conn.setSeleniumTraceLog(Boolean.parseBoolean(reader.getValue("seleniumTraceLog")));
+		}
+		catch (Exception oEx)
+		{
+			throw oEx;
+		}
+		
+		return conn;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see gp.runner.api.IConfigReader#readList()
+	 */
+	@Override
+	public List<Connection> readList() throws Exception
+	{
+		throw new Exception("Method has not implemented yet");
+	}
+}

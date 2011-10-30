@@ -1,0 +1,45 @@
+package framework.bullet;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import org.drivers.ClientConfiguration;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import com.thoughtworks.selenium.Selenium;
+
+public class ClientServerLauncherTest
+{
+	ClientServerLauncher instance;
+	
+	@Before
+	public void setUp() throws Exception
+	{
+		instance = new ClientServerLauncher();
+	}
+	
+	@After
+	public void tearDown() throws Exception
+	{
+	}
+	
+	@Test
+	public void testStartClientServer()
+	{
+		ClientConfiguration conf = new ClientConfiguration();
+		conf.setServerHost("localhost");
+		conf.setServerPort(6543);
+		conf.setBrowserStartCommand("*firefox");
+		conf.setBrowserURL("http://localhost/");
+		
+		Selenium sel = instance.startClientServer(conf);
+		
+		assertNotNull(sel);
+		assertTrue(instance.portPool.getAllPorts().contains(conf.getServerPort()));
+		assertTrue(instance.getPoolOfClients().containsValue(sel));
+		instance.shutdownClientServer(conf);
+	}
+	
+}

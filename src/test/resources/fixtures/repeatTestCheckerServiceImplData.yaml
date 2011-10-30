@@ -1,0 +1,151 @@
+---
+
+- !api.database.beans.tables.TestExecFailure
+  testExec: !api.database.beans.tables.TestExec
+            id: 1
+  failure: !api.database.beans.tables.Failure 
+          id: 1 
+          description: "Email timeout"
+#
+- !api.database.beans.tables.TestExecFailure
+  testExec: !api.database.beans.tables.TestExec
+          id: 2
+  failure: !api.database.beans.tables.Failure 
+          id: 2
+          description: "timeout after"
+#
+- !api.database.beans.tables.TestExecFailure
+  testExec: !api.database.beans.tables.TestExec
+          id: 3
+  failure: !api.database.beans.tables.Failure
+          id: 3
+          description: "Command timeout"  
+#
+- !api.database.beans.tables.TestExecFailure
+  testExec: !api.database.beans.tables.TestExec
+          id: 4
+  failure: !api.database.beans.tables.Failure
+          id: 4
+          description: "No sessionId provided" 
+#
+- !api.database.beans.tables.TestExecFailure
+  testExec: !api.database.beans.tables.TestExec
+          id: 5
+  failure: !api.database.beans.tables.Failure
+          id: 5
+          description: "result was neither" 
+#
+- !api.database.beans.tables.TestExecFailure
+  testExec: !api.database.beans.tables.TestExec
+          id: 6
+  failure: !api.database.beans.tables.Failure
+          id: 6
+          description: "Timed out"
+#
+- !api.database.beans.tables.TestExecFailure
+  testExec: !api.database.beans.tables.TestExec
+          id: 7
+  failure: !api.database.beans.tables.Failure
+          id: 7
+          description: "Couldn't access document.body."
+#
+- !api.database.beans.tables.TestExecFailure
+  testExec: !api.database.beans.tables.TestExec
+          id: 8
+  failure: !api.database.beans.tables.Failure
+          id: 8
+          description: "Could not retrieve a new session"
+#
+- !api.database.beans.tables.TestExecFailure
+  testExec: !api.database.beans.tables.TestExec
+          id: 9
+  failure: !api.database.beans.tables.Failure
+          id: 9
+          description: "Internal server error"
+#
+- !api.database.beans.tables.TestExecFailure
+  testExec: !api.database.beans.tables.TestExec
+          id: 10
+  failure: !api.database.beans.tables.Failure
+          id: 10
+          description: "null common.net.mail.MailClient.getMessages"
+#
+- !api.database.beans.tables.TestExecFailure
+  testExec: !api.database.beans.tables.TestExec
+          id: 11
+  failure: !api.database.beans.tables.Failure
+          id: 11
+          description: "Request Error"
+#
+- !api.database.beans.tables.TestExecFailure
+  testExec: !api.database.beans.tables.TestExec
+          id: 12
+  failure: !api.database.beans.tables.Failure
+          id: 12
+          description: "Connect failed com.sun.mail.pop3"
+#
+- !api.database.beans.tables.TestExecFailure
+  testExec: !api.database.beans.tables.TestExec
+          id: 13
+  failure: !api.database.beans.tables.Failure
+          id: 13
+          description: "Server Exception: unexpected command"
+#
+- !api.database.beans.tables.TestExecFailure
+  testExec: !api.database.beans.tables.TestExec
+          id: 14
+  failure: !api.database.beans.tables.Failure
+          id: 14
+          description: "Email contains incorrect attachment"
+#        
+- !api.database.beans.tables.TestExecFailure
+  testExec: !api.database.beans.tables.TestExec
+          id: 15
+  failure: !api.database.beans.tables.Failure
+          id: 15
+          description: "Some error"        
+#
+- !api.database.beans.tables.TestExecFailure
+  testExec: !api.database.beans.tables.TestExec
+          id: 16
+  failure: !api.database.beans.tables.Failure
+          id: 16
+          description: "element not found"        
+#
+- !api.database.beans.tables.TestExecFailure
+  testExec: !api.database.beans.tables.TestExec
+          id: 17
+  failure: !api.database.beans.tables.Failure
+          id: 17
+          description: "<xul:button xmlns:xul=\"http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul\" id=\"errorTryAgain\" label=\"connection reset\" oncommand=\"retryThis(this);\">    </xul:button>"
+#
+- !api.database.beans.tables.TestExecFailure
+  testExec: !api.database.beans.tables.TestExec
+          id: 18
+  failure: !api.database.beans.tables.Failure
+          id: 18
+          description: "Folder not open"
+#
+- !api.database.beans.tables.TestExecFailure
+  testExec: !api.database.beans.tables.TestExec
+          id: 19
+  failure: !api.database.beans.tables.Failure
+          id: 19
+          description: "Connection_reset"
+#
+
+- !api.database.beans.tables.TestExecFailure
+  testExec: !api.database.beans.tables.TestExec
+          id: 20
+  failure: !api.database.beans.tables.Failure
+          id: 20
+          description: "Connection_refused"
+
+#
+- !api.database.beans.tables.TestExecFailure
+  testExec: !api.database.beans.tables.TestExec
+          id: 21
+  failure: !api.database.beans.tables.Failure
+          id: 21
+          description: "Connection_timed_out"
+# end

@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<!-- stardart hibernate properties -->
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.connection.url">
+			jdbc:mysql://kievtomcat.kievlan.local:3306/jresults?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;mysqlEncoding=utf8</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">12rhua34</property>
+
+		<!-- additional connection properties -->
+		<!--
+			* validate: validate the schema, makes no changes to the database.
+			* update: update the schema.
+			* create: creates the schema, destroying previous data.
+			* create-drop: drop the schema at the end of the session.
+ 		-->
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<property name="hibernate.format_sql">true</property>
+		<property name="hibernate.show_sql">false</property>
+		<property name="hibernate.max_fetch_depth">3</property>
+		<property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+
+		<!-- connection pool properties -->
+
+		<property name="hibernate.connection.pool_size">2</property>	
+		
+		<property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+		<property name="hibernate.c3p0.timeout">300</property>
+		<property name="hibernate.c3p0.testConnectionOnCheckout">true</property>
+		<property name="hibernate.c3p0.min_size">1</property>
+		<property name="hibernate.c3p0.max_size">2</property>
+		<property name="hibernate.c3p0.max_statements">0</property>
+		<property name="hibernate.c3p0.numHelperThreads">5</property>
+		<property name="hibernate.c3p0.preferredTestQuery">select 1</property>
+		<property name="hibernate.c3p0.testConnectionOnCheckin">true</property>
+		<property name="hibernate.c3p0.idleConnectionTestPeriod">600</property>
+		<property name="hibernate.c3p0.acquireIncrement">5</property>
+		<property name="hibernate.c3p0.acquireRetryAttempts ">100</property>
+		<property name="hibernate.c3p0.acquireRetryDelay">2000</property>
+		<property name="hibernate.c3p0.breakAfterAcquireFailure">false</property>
+		<!-- Mapping files -->
+	</session-factory>
+</hibernate-configuration>
+

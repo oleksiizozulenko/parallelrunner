@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/repos/testframework/!svn/ver/608/trunk/Runner/src/test/java/qa/tool/runner/fixtures/mapping
+END
+RunBuilderParseCmdLineInputData.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/testframework/!svn/ver/608/trunk/Runner/src/test/java/qa/tool/runner/fixtures/mapping/RunBuilderParseCmdLineInputData.java
+END
+RunBuilderGetRunSuitesInputData.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/testframework/!svn/ver/607/trunk/Runner/src/test/java/qa/tool/runner/fixtures/mapping/RunBuilderGetRunSuitesInputData.java
+END

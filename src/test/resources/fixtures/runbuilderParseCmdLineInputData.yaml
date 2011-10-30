@@ -1,0 +1,41 @@
+---
+
+- !qa.tool.runner.fixtures.mapping.RunBuilderParseCmdLineInputData 
+  cmdline: !java.util.ArrayList 
+          - 'java'
+          - '-Xms128m'
+          - '-Xmx512m' 
+          - '-jar'
+          - 'suite_jar'
+          - '-name'
+          - 'ff'
+          - '-config'         
+          - './config/ff.config.xml'
+          - '-suite'
+          - './suite.xml'
+          - '-log' 
+          - '--jpa' 
+          -  '-error'
+          - '-emailreport'
+          - '-properties'
+          -  './props/runtime.properties'
+          - '-ignore'
+          - "WebDriver,Aquickpays,ci_suite,etc"  
+  expected: !gp.runner.api.RunBuilderConfig 
+          configPath: './config/ff.config.xml'
+          suitePath: './suite.xml'
+          logPath: '/'
+          logLevel: 'error'
+          ignoredSuites: !java.util.ArrayList 
+                      - 'WebDriver'
+                      - 'Aquickpays'
+                      - 'ci_suite'
+                      - 'etc'
+          includesSuites: !java.util.ArrayList null
+          logType: !java.lang.Integer 6
+          selfTest: !java.lang.Boolean false
+          sentResult: !java.lang.Boolean true
+          development: !java.lang.Boolean false
+          currentExecutionName: 'ff'
+
+#end

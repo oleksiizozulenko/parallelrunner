@@ -1,0 +1,101 @@
+---
+
+- !qa.tool.runner.fixtures.mapping.RunBuilderGetRunSuitesInputData
+  filesuite: !java.util.ArrayList null          
+  ignore: !java.util.ArrayList null         
+  include: !java.util.ArrayList null          
+  expected: !java.util.ArrayList null
+              
+
+- !qa.tool.runner.fixtures.mapping.RunBuilderGetRunSuitesInputData
+  &onesuite filesuite: !java.util.ArrayList
+            - sometest            
+  ignore: !java.util.ArrayList null        
+  include: !java.util.ArrayList null       
+  expected: *onesuite
+
+- !qa.tool.runner.fixtures.mapping.RunBuilderGetRunSuitesInputData
+  filesuite: !java.util.ArrayList
+          - one
+          - two
+  ignore: !java.util.ArrayList
+        - one
+  include: !java.util.ArrayList null
+  expected: !java.util.ArrayList
+         - two
+  
+- !qa.tool.runner.fixtures.mapping.RunBuilderGetRunSuitesInputData
+  filesuite: !java.util.ArrayList
+          - one
+          - two
+  ignore: !java.util.ArrayList
+        - one
+  include: !java.util.ArrayList
+         - one
+  expected: !java.util.ArrayList []
+          
+- !qa.tool.runner.fixtures.mapping.RunBuilderGetRunSuitesInputData
+  filesuite: !java.util.ArrayList
+          - one
+  ignore: !java.util.ArrayList null
+  include: !java.util.ArrayList
+          - two
+  expected: !java.util.ArrayList []
+        
+
+- !qa.tool.runner.fixtures.mapping.RunBuilderGetRunSuitesInputData
+  filesuite: !java.util.ArrayList
+        - one
+  ignore: !java.util.ArrayList
+        - two 
+  include: !java.util.ArrayList null
+  expected: !java.util.ArrayList  
+        - one
+
+- !qa.tool.runner.fixtures.mapping.RunBuilderGetRunSuitesInputData
+  filesuite: !java.util.ArrayList
+          - one 
+  ignore: !java.util.ArrayList
+          - one
+  include: !java.util.ArrayList
+          - one
+  expected: !java.util.ArrayList []
+          
+
+- !qa.tool.runner.fixtures.mapping.RunBuilderGetRunSuitesInputData
+  filesuite: !java.util.ArrayList
+          - one 
+          - two
+  ignore: !java.util.ArrayList
+        - one
+        - two 
+  include: !java.util.ArrayList
+       - two
+  expected: !java.util.ArrayList []
+         
+- !qa.tool.runner.fixtures.mapping.RunBuilderGetRunSuitesInputData
+  filesuite: !java.util.ArrayList
+          - one 
+          - two
+          - three
+  ignore: !java.util.ArrayList
+        - one
+        - two 
+  include: !java.util.ArrayList
+       - three
+  expected: !java.util.ArrayList 
+        - three
+
+- !qa.tool.runner.fixtures.mapping.RunBuilderGetRunSuitesInputData
+  filesuite: !java.util.ArrayList
+          - one 
+          - two
+          - three
+  ignore: !java.util.ArrayList []        
+  include: !java.util.ArrayList []       
+  expected: !java.util.ArrayList
+          - one 
+          - two
+          - three
+
+#end

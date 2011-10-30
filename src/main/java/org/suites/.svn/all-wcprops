@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/repos/testframework/!svn/ver/732/trunk/Runner/src/main/java/org/suites
+END
+FuncTestStatus.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/repos/testframework/!svn/ver/664/trunk/Runner/src/main/java/org/suites/FuncTestStatus.java
+END
+AbstractFunctionalTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/testframework/!svn/ver/732/trunk/Runner/src/main/java/org/suites/AbstractFunctionalTestCase.java
+END
+TestSuite.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/repos/testframework/!svn/ver/539/trunk/Runner/src/main/java/org/suites/TestSuite.java
+END
+AbstractSuite.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/repos/testframework/!svn/ver/715/trunk/Runner/src/main/java/org/suites/AbstractSuite.java
+END
+FuncTestResult.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/repos/testframework/!svn/ver/702/trunk/Runner/src/main/java/org/suites/FuncTestResult.java
+END

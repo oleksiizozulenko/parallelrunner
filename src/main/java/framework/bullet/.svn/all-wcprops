@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/repos/testframework/!svn/ver/729/trunk/Runner/src/main/java/framework/bullet
+END
+RunnerFactorySuiteReaderWithJSONImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/testframework/!svn/ver/727/trunk/Runner/src/main/java/framework/bullet/RunnerFactorySuiteReaderWithJSONImpl.java
+END
+ProjectConfigReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/testframework/!svn/ver/694/trunk/Runner/src/main/java/framework/bullet/ProjectConfigReader.java
+END
+ClientServerLauncher.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/testframework/!svn/ver/655/trunk/Runner/src/main/java/framework/bullet/ClientServerLauncher.java
+END
+PortPool.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/repos/testframework/!svn/ver/600/trunk/Runner/src/main/java/framework/bullet/PortPool.java
+END
+RunnerFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/testframework/!svn/ver/727/trunk/Runner/src/main/java/framework/bullet/RunnerFactory.java
+END
+IRunnerFactorySuiteReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/repos/testframework/!svn/ver/727/trunk/Runner/src/main/java/framework/bullet/IRunnerFactorySuiteReader.java
+END
+RuleFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/testframework/!svn/ver/664/trunk/Runner/src/main/java/framework/bullet/RuleFilter.java
+END
+RunnerFactorySuiteReaderWithPackagesImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/repos/testframework/!svn/ver/729/trunk/Runner/src/main/java/framework/bullet/RunnerFactorySuiteReaderWithPackagesImpl.java
+END
+AbstractRunnerFactorySuiteReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/repos/testframework/!svn/ver/729/trunk/Runner/src/main/java/framework/bullet/AbstractRunnerFactorySuiteReader.java
+END
+RunnerFactorySuiteReaderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/testframework/!svn/ver/727/trunk/Runner/src/main/java/framework/bullet/RunnerFactorySuiteReaderImpl.java
+END

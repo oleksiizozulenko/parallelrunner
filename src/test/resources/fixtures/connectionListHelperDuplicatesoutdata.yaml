@@ -1,0 +1,54 @@
+--- 
+"Connection [applicationTimeout=300000, applicationUrl=http://trunk-rc3.dev-planet.dk/, deleteCookies=true, duplicateLabel=null, emailFrom=qa-for-mail-test9@goldenplanet.com, emailHost=mail.goldenplanet.com, emailTimeout=60000, emailUserName=akeem@goldenplanet.com, emailUserPassword=DjkrbGfufyst7685, enviromentOs=MacOsX, ftpHost=trunk-rc3.dev-planet.dk, ftpPassword=d1dd7eed, ftpUser=trunk-rc3, gridMode=false, label=fftrunkrc, resetApplication=true, resetFile=/mydump.sql, resetPosition=setup, resetType=sql, screenshotPath=/Users/oleksii.zozulenko/screenshots/, seleniumBrowser=*firefox, seleniumHost=localhost, seleniumPort=4444, seleniumSpeed=0, seleniumTraceLog=false, skin=classic]": []
+"Connection [applicationTimeout=300000, applicationUrl=http://trunk-rc3.dev-planet.dk/, deleteCookies=true, duplicateLabel=null, emailFrom=qa-for-mail-test9@goldenplanet.com, emailHost=mail.goldenplanet.com, emailTimeout=60000, emailUserName=akeem@goldenplanet.com, emailUserPassword=DjkrbGfufyst7685, enviromentOs=MacOsX, ftpHost=trunk-rc3.dev-planet.dk, ftpPassword=d1dd7eed, ftpUser=trunk-rc3, gridMode=false, label=fftrunkrcold, resetApplication=true, resetFile=/mydump.sql, resetPosition=setup, resetType=sql, screenshotPath=/Users/oleksii.zozulenko/screenshots/, seleniumBrowser=*firefox, seleniumHost=localhost, seleniumPort=4444, seleniumSpeed=0, seleniumTraceLog=false, skin=oscommerce]": []
+"Connection [applicationTimeout=300000, applicationUrl=http://qa-trunk13.kievlan.local/, deleteCookies=true, duplicateLabel=null, emailFrom=qa-for-mail-test9@goldenplanet.com, emailHost=mail.goldenplanet.com, emailTimeout=600000, emailUserName=akeem@goldenplanet.com, emailUserPassword=DjkrbGfufyst7685, enviromentOs=MacOsX, ftpHost=qa-trunk13.kievlan.local, ftpPassword=4012ecd3, ftpUser=qatrunk13, gridMode=false, label=fftrunk, resetApplication=true, resetFile=/mydump.sql, resetPosition=setup, resetType=demo, screenshotPath=/Users/oleksii.zozulenko/screenshots/, seleniumBrowser=*firefox, seleniumHost=localhost, seleniumPort=4444, seleniumSpeed=0, seleniumTraceLog=false, skin=classic]": 
+  - !project.utils.Connection
+    applicationTimeout: "300000"
+    applicationUrl: "http://qa-trunk5.kievlan.local/"
+    deleteCookies: true
+    duplicateLabel: fftrunk
+    emailFrom: qa-for-mail-test9@goldenplanet.com
+    emailHost: mail.goldenplanet.com
+    emailTimeout: "600000"
+    emailUserName: akeem@goldenplanet.com
+    emailUserPassword: DjkrbGfufyst7685
+    enviromentOs: MacOsX
+    ftpHost: qa-trunk5.kievlan.local
+    ftpPassword: 9b3d5706
+    ftpUser: trunk5
+    label: fftrunk2
+    resetApplication: true
+    resetFile: /mydump.sql
+    resetPosition: setup
+    resetType: demo
+    screenshotPath: /Users/oleksii.zozulenko/screenshots/
+    seleniumBrowser: "*firefox"
+    seleniumHost: localhost
+    seleniumSpeed: "0"
+    skin: classic
+    url: "http://qa-trunk5.kievlan.local/"
+  - !project.utils.Connection
+    applicationTimeout: "300000"
+    applicationUrl: "http://qa-trunk6.kievlan.local/"
+    deleteCookies: true
+    duplicateLabel: fftrunk
+    emailFrom: qa-for-mail-test9@goldenplanet.com
+    emailHost: mail.goldenplanet.com
+    emailTimeout: "600000"
+    emailUserName: akeem@goldenplanet.com
+    emailUserPassword: DjkrbGfufyst7685
+    enviromentOs: MacOsX
+    ftpHost: qa-trunk5.kievlan.local
+    ftpPassword: 9b3d5706
+    ftpUser: trunk5
+    label: fftrunk3
+    resetApplication: true
+    resetFile: /mydump.sql
+    resetPosition: setup
+    resetType: demo
+    screenshotPath: /Users/oleksii.zozulenko/screenshots/
+    seleniumBrowser: "*firefox"
+    seleniumHost: localhost
+    seleniumSpeed: "0"
+    skin: classic
+    url: "http://qa-trunk6.kievlan.local/"

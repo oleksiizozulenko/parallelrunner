@@ -1,0 +1,32 @@
+package framework.bullet;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
+import framework.bullet.rulesdata.TestBE1;
+import framework.bullet.rulesdata.TestFE1;
+import framework.bullet.rulesdata.TestNoAnnotation1;
+import framework.bullet.rulesdata.TestNone1;
+import framework.bullet.utils.GroupBEFilter;
+
+public class GroupBEFilterTest
+{
+	
+	@Test
+	public void testEvaluate()
+	{
+		GroupBEFilter filter = new GroupBEFilter();
+		TestBE1 be = new TestBE1();
+		TestFE1 fe = new TestFE1();
+		TestNone1 none = new TestNone1();
+		TestNoAnnotation1 noann = new TestNoAnnotation1();
+		
+		assertTrue(filter.evaluate(be));
+		assertTrue(filter.evaluate(fe));
+		assertFalse(filter.evaluate(none));
+		assertTrue(filter.evaluate(noann));
+		assertTrue(filter.evaluate(null));
+	}
+}

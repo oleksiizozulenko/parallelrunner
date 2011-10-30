@@ -1,0 +1,156 @@
+---
+
+# Default debug host 
+- !project.utils.Connection
+    label: fftrunk2
+    duplicateLabel: fftrunk
+    applicationUrl: 'http://qa-trunk5.kievlan.local/'
+    skin: classic
+    ftpHost: qa-trunk5.kievlan.local
+    ftpUser: trunk5
+    ftpPassword:    9b3d5706
+    &eU emailUserName:  akeem@goldenplanet.com
+    &eUP emailUserPassword: DjkrbGfufyst7685
+    &eH emailHost: mail.goldenplanet.com
+    &eT emailTimeout: 600000 
+    &eF emailFrom: qa-for-mail-test9@goldenplanet.com
+    &scP screenshotPath: '/Users/oleksii.zozulenko/screenshots/'
+    &sH seleniumHost: localhost
+    &sP seleniumPort: !java.lang.Integer 4444
+    &sB seleniumBrowser: '*firefox'
+    seleniumSpeed: 0   
+    seleniumTraceLog: !java.lang.Boolean false
+    &aT applicationTimeout: 300000
+    &eOs enviromentOs: MacOsX    
+    closeBrowser: !java.lang.Boolean true
+    resetApplication: !java.lang.Boolean true
+    resetType: demo
+    resetPosition: setup
+    resetFile: /mydump.sql
+    deleteCookies: !java.lang.Boolean true
+
+
+- !project.utils.Connection
+    label: fftrunk3
+    duplicateLabel: fftrunk
+    applicationUrl: 'http://qa-trunk6.kievlan.local/'
+    skin: classic
+    ftpHost: qa-trunk5.kievlan.local
+    ftpUser: trunk5
+    ftpPassword:    9b3d5706
+    emailUserName:  akeem@goldenplanet.com
+    emailUserPassword: DjkrbGfufyst7685
+    emailHost: mail.goldenplanet.com
+    emailTimeout: 600000 
+    emailFrom: qa-for-mail-test9@goldenplanet.com
+    screenshotPath: '/Users/oleksii.zozulenko/screenshots/'
+    seleniumHost: localhost
+    seleniumPort: !java.lang.Integer 4444
+    seleniumBrowser: '*firefox'
+    seleniumSpeed: 0   
+    seleniumTraceLog: !java.lang.Boolean false
+    applicationTimeout: 300000
+    enviromentOs: MacOsX    
+    closeBrowser: !java.lang.Boolean true
+    resetApplication: !java.lang.Boolean true
+    resetType: demo
+    resetPosition: setup
+    resetFile: /mydump.sql
+    deleteCookies: !java.lang.Boolean true
+    
+#------------------------------------------------------------------
+
+# trunk new serv
+- !project.utils.Connection
+    label: fftrunk
+    #applicationUrl: 'http://max.kievlan.local/'
+    applicationUrl: 'http://qa-trunk13.kievlan.local/'
+    #applicationUrl: 'http://obbfarm10.dev-planet.dk/'
+    skin: classic
+    ftpHost: qa-trunk13.kievlan.local
+    ftpUser: qatrunk13
+    ftpPassword: '4012ecd3'
+    emailUserName:  akeem@goldenplanet.com
+    emailUserPassword: DjkrbGfufyst7685
+    emailHost: mail.goldenplanet.com
+    emailTimeout: 600000 
+    emailFrom: qa-for-mail-test9@goldenplanet.com
+    screenshotPath: '/Users/oleksii.zozulenko/screenshots/'
+    seleniumHost: localhost
+    seleniumPort: !java.lang.Integer 4444
+    seleniumBrowser: '*firefox'
+    seleniumSpeed: 0   
+    seleniumTraceLog: !java.lang.Boolean false
+    applicationTimeout: 300000
+    enviromentOs: MacOsX    
+    closeBrowser: !java.lang.Boolean true
+    resetApplication: !java.lang.Boolean true
+    resetType: demo
+    resetPosition: setup
+    resetFile: /mydump.sql
+    deleteCookies: !java.lang.Boolean true
+
+##------------------------------------------------------------------
+#
+## trunk-rc classic 
+- !project.utils.Connection
+    label: fftrunkrc
+    dupicateLabel: 
+    applicationUrl: 'http://trunk-rc3.dev-planet.dk/'
+    skin: classic
+    ftpHost: trunk-rc3.dev-planet.dk
+    ftpUser: trunk-rc3
+    ftpPassword: 'd1dd7eed'
+    emailUserName:  akeem@goldenplanet.com
+    emailUserPassword: DjkrbGfufyst7685
+    emailHost: mail.goldenplanet.com
+    emailTimeout: 60000 
+    emailFrom: qa-for-mail-test9@goldenplanet.com
+    screenshotPath: '/Users/oleksii.zozulenko/screenshots/'
+    seleniumHost: localhost
+    seleniumPort: !java.lang.Integer 4444
+    seleniumBrowser: '*firefox'
+    seleniumSpeed: 0   
+    seleniumTraceLog: !java.lang.Boolean false
+    applicationTimeout: 300000
+    enviromentOs: MacOsX    
+    resetApplication: !java.lang.Boolean true
+    resetType: sql
+    resetPosition: setup
+    resetFile: /mydump.sql
+    closeBrowser: !java.lang.Boolean true
+    deleteCookies: !java.lang.Boolean true
+
+##------------------------------------------------------------------
+#
+# trunk-rc oscommerce
+- !project.utils.Connection
+    label: fftrunkrcold
+    applicationUrl: 'http://trunk-rc3.dev-planet.dk/'
+    skin: oscommerce
+    ftpHost: trunk-rc3.dev-planet.dk
+    ftpUser: trunk-rc3
+    ftpPassword: 'd1dd7eed'
+    emailUserName:  akeem@goldenplanet.com
+    emailUserPassword: DjkrbGfufyst7685
+    emailHost: mail.goldenplanet.com
+    emailTimeout: 60000 
+    emailFrom: qa-for-mail-test9@goldenplanet.com
+    screenshotPath: '/Users/oleksii.zozulenko/screenshots/'
+    seleniumHost: localhost
+    seleniumPort: !java.lang.Integer 4444
+    seleniumBrowser: '*firefox'
+    seleniumSpeed: 0   
+    seleniumTraceLog: !java.lang.Boolean false
+    applicationTimeout: 300000
+    enviromentOs: MacOsX    
+    resetApplication: !java.lang.Boolean true
+    resetType: sql
+    resetPosition: setup
+    resetFile: /mydump.sql
+    closeBrowser: !java.lang.Boolean true
+    deleteCookies: !java.lang.Boolean true
+#
+
+
+#end

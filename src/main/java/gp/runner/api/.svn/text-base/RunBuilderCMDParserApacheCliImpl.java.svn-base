@@ -1,0 +1,237 @@
+/**
+ * 
+ */
+package gp.runner.api;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Properties;
+
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.GnuParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.OptionBuilder;
+import org.apache.commons.cli.Options;
+
+/**
+ * @author oleksii.zozulenko
+ */
+public class RunBuilderCMDParserApacheCliImpl extends AbstractRunBuilderService implements
+		RunBuilderCMDParser
+{
+	public RunBuilderCMDParserApacheCliImpl()
+	{
+		super();
+	}
+	
+	/* (non-Javadoc)
+	 * @see gp.runner.api.RunBuilderCMDParser#parse(java.lang.String[])
+	 */
+	@Override
+	@SuppressWarnings("static-access")
+	public RunBuilderConfig parse(String[] args)
+	{
+		if (args == null)
+		{
+			return null;
+		}
+		
+		RunBuilderConfig conf = new RunBuilderConfig();
+		List agrsList = Arrays.asList(args);
+		if (agrsList.contains("-jar"))
+		{
+			int startind = agrsList.indexOf("-jar");
+			List s = agrsList.subList(startind + 1, agrsList.size());
+			args = (String[]) s.toArray(new String[s.size()]);
+		}
+		
+		// create the command line parser
+		CommandLineParser parser = new GnuParser();
+		
+		Options options = new Options();
+		
+		Option development = OptionBuilder.withLongOpt("development").hasArg(false)
+				.withDescription("Enable development mode").isRequired(false).create();
+		Option self_test = OptionBuilder.withLongOpt("self-test").hasArg(false).isRequired(false)
+				.withDescription("Doing self testing and return").create();
+		Option emailreport = new Option("emailreport",
+				"Enable reporting about tests results on Email");
+		Option config = OptionBuilder.withArgName("config").hasArg().withDescription(
+				"path or url of your config").create("config");
+		
+		Option suite = OptionBuilder.withArgName("suite").hasArg().withDescription(
+				"Path or url to your tests ").create("suite");
+		
+		Option name = OptionBuilder.withArgName("name").hasArg().withDescription(
+				"Name of execution").isRequired(false).create("name");
+		
+		Option log = OptionBuilder.withArgName("property=value").hasArgs(2).withValueSeparator()
+				.isRequired(false).hasArg().create("log");
+		
+		Option includes = OptionBuilder.withArgName("includes").isRequired(false).hasArg()
+				.withDescription("Suites that you want to include").create("include");
+		
+		Option excludes = OptionBuilder.withArgName("excludes").isRequired(false).hasArg().create(
+				"ignore");
+		options.addOption(development);
+		options.addOption(self_test);
+		options.addOption(emailreport);
+		options.addOption(config);
+		options.addOption(suite);
+		options.addOption(name);
+		options.addOption(includes);
+		options.addOption(excludes);
+		options.addOption(log);
+		
+		try
+		{
+			CommandLine line = parser.parse(options, args, false);
+			
+			for (Option opt : line.getOptions())
+			{
+				
+				if (opt.equals(development))
+				{
+					logger.info("Runner in development mode.");
+					
+					Properties devproperties = startupFactory
+							.readProperties("props/dev.properties");
+					if (devproperties != null && !devproperties.isEmpty())
+					{
+						conf.setConfigPath(devproperties.getProperty("config.app"));
+						conf.setSuitePath(devproperties.getProperty("suite.path"));
+						conf.setLogPath(devproperties.getProperty("log.path"));
+						conf.setLogLevel(devproperties.getProperty("log.level"));
+						conf.setLogType(Integer.parseInt(devproperties.getProperty("log.type")));
+					}
+					else
+					{
+						// printUseDevProperties("Main");
+					}
+					conf.setDevelopment(true);
+					continue;
+				}
+				
+				if (opt.equals(self_test))
+				{
+					conf.setSelfTest(true);
+				}
+				
+				if (opt.equals(emailreport))
+				{
+					conf.setSentResult(true);
+				}
+				
+				if (opt.equals(config))
+				{
+					conf.setConfigPath(opt.getValue());
+				}
+				
+				if (opt.equals(suite))
+				{
+					conf.setSuitePath(opt.getValue());
+				}
+				
+				if (opt.equals(name))
+				{
+					String currentExecutionName = opt.getValue();
+					conf.setCurrentExecutionName(currentExecutionName);
+					logger.info("Current execution name is: " + currentExecutionName);
+					
+				}
+				
+				if (opt.equals(includes))
+				{
+					String sIgnoredSuitesTmp = opt.getValue();
+					String[] includesSuites = sIgnoredSuitesTmp.split(",");
+					includesSuites[0] = includesSuites[0].replaceFirst("\"", "");
+					includesSuites[includesSuites.length - 1] = includesSuites[includesSuites.length - 1]
+							.replace("\"", "");
+					conf.setIncludesSuites(new ArrayList<String>(Arrays.asList(includesSuites)));
+					
+					logger.info("Included suites are: " + conf.getIncludesSuites());
+					
+				}
+				
+				if (opt.equals(excludes))
+				{
+					String sIgnoredSuitesTmp = excludes.getValue();
+					String[] sIgnoredSuites = sIgnoredSuitesTmp.split(",");
+					sIgnoredSuites[0] = sIgnoredSuites[0].replaceFirst("\"", "");
+					sIgnoredSuites[sIgnoredSuites.length - 1] = sIgnoredSuites[sIgnoredSuites.length - 1]
+							.replace("\"", "");
+					conf.setIgnoredSuites(new ArrayList<String>(Arrays.asList(sIgnoredSuites)));
+					
+					logger.info("Ignored suites are: " + conf.getIgnoredSuites());
+					
+				}
+				
+				if (opt.equals(log))
+				{
+					conf.setLogLevel(opt.getValue());
+				}
+			}
+			
+		}
+		catch (Exception e)
+		{
+			// automatically generate the help statement
+			HelpFormatter formatter = new HelpFormatter();
+			formatter.printHelp("Main.class", options);
+			
+			throw new IllegalArgumentException(
+					"Wrong command line arguments. See usage documentation.");
+		}
+		
+		for (int i = 0; i < args.length; i++)
+		{
+			String currenctCmdArgument = args[i];
+			if (currenctCmdArgument.equalsIgnoreCase("-log"))
+			{
+				if (args[i + 1].equalsIgnoreCase("--html"))
+				{
+					conf.setLogPath(args[i + 2]);
+					i += 2;
+					// 1 - value of html log
+					conf.setLogType(1);
+				}
+				else if (args[i + 1].equalsIgnoreCase("--file"))
+				{
+					conf.setLogPath(args[i + 2]);
+					i += 2;
+					// 2 - value of file log
+					conf.setLogType(2);
+				}
+				else if (args[i + 1].equalsIgnoreCase("--stream"))
+				{
+					conf.setLogPath(args[i + 2]);
+					i += 2;
+					// 3 - value of stream output
+					conf.setLogType(3);
+				}
+				else if (args[i + 1].equalsIgnoreCase("--jpa"))
+				{
+					i += 1;
+					conf.setLogType(6);
+				}
+			}
+			
+		}
+		
+		String sLogPath = conf.getLogPath().replace("\"", "");
+		int iLastSlash = sLogPath.lastIndexOf("/");
+		
+		if (iLastSlash == -1)
+		{
+			sLogPath = sLogPath + "/";
+		}
+		
+		conf.setLogPath(sLogPath);
+		
+		return conf;
+	}
+	
+}

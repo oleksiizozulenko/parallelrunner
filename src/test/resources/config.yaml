@@ -1,0 +1,29 @@
+---
+- !project.utils.Connection
+    emailUserName:  
+    emailUserPassword: 
+    emailHost:
+    emailTimeout:
+    emailFrom:
+    screenshotPath: 
+    tempFolder:
+    imagesFolder:
+    seleniumHost: 
+    seleniumPort: !java.lang.Integer 4444
+    seleniumBrowser: 
+    applicationUrl: 
+    seleniumTimeout:
+    enviromentOs:
+    ftpHost:
+    ftpUser:
+    ftpPassword:
+    closeBrowser: !java.lang.Boolean true
+    resetApplication: !java.lang.Boolean true
+    resetType:
+    resetPosition:
+    resetFile:
+    deleteCookies: !java.lang.Boolean false
+    skin:
+
+
+#end

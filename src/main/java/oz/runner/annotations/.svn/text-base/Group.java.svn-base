@@ -1,0 +1,20 @@
+/**
+ *
+ */
+package framework.annotations;
+
+import java.lang.annotation.Retention;
+
+import app.AppSide;
+import app.Severity;
+
+/**
+ * @author oleksii
+ */
+@Retention(java.lang.annotation.RetentionPolicy.RUNTIME)
+public @interface Group
+{
+	AppSide value();
+	
+	Severity priority() default Severity.all;
+}
